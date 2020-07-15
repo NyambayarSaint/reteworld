@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clone": "git clone https://github.com/Yondo202/rete-web.git && git clone https://github.com/Yondo202/rete-admin.git",
     "install-all": "npm install && cd 'rete-admin' && npm install && npm run build && cd .. && cd rete-web && npm install && cd ..",
     "dev": "concurrently \"nodemon server.js\" \"cd rete-admin && npm run develop\" \"cd rete-web && npm run dev\""
   },
