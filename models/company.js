@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 
 const companySchema = new mongoose.Schema({
-    name: {type: String, required: true},
+    username: {type: String, required: true},
     email: {
         type: String,
         unique: true,

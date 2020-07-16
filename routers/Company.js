@@ -2,14 +2,16 @@ const express = require('express')
 const router = new express.Router()
 const Company = require('../models/company') 
 
-router.get('', async (req, res) => {
-    res.send('heheee')
+router.get('/', async (req, res) => {
+    console.log('Got my index!')
+    res.send('Got my index')
 })
 
-router.post('/test', async (req, res) => {
+
+router.post('/company/register', async (req, res) => {
     console.log(req.body);
     const company = new Company({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
     });
@@ -17,7 +19,7 @@ router.post('/test', async (req, res) => {
         await company.save();
         res.status(200).send('Okay!')
     }catch(e){
-        res.send(e.errors).status(400)
+        res.send(e).status(400)
     }
 })
 
