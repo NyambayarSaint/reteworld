@@ -14,17 +14,19 @@ const CoRegister = () => {
     }
     
     return (
-        <div>
-            Company Register
-            <form onSubmit={handle}>
-                <input type="text" name="username" placeholder="Username" />
-                <input type="text" name="email" placeholder="E-mail"/>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="submit" value="Submit"/>
+        <div style={{display:'flex',alignItems:'center',height:'100vh'}}>
+            <form className="form-signin mt-5" onSubmit={handle} style={{width:'100%',maxWidth: 330, padding: 15, margin: '0px auto'}} > 
+                <h1 className="h3 mb-3 font-weight-normal text-center">Please sign up</h1>
+                <label htmlFor="inputEmail" className="sr-only">Username</label>
+                <input type="text" name="username" className="form-control" placeholder="Username" required autofocus />
+                <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                <input type="email" name="email" className="form-control" placeholder="Email address" required autofocus />
+                <label htmlFor="inputPassword" className="sr-only">Password</label>
+                <input type="password" id="inputPassword" name="password" className="form-control" placeholder="Password" required />
+                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                {error.status ? <div class="alert alert-danger mt-4" role="alert">{error.message}</div> :null}
+                <p className="mt-5 mb-3 text-muted text-center">© 2019-2020</p>
             </form>
-            <div>
-                {error.status ? error.message :null}
-            </div>
         </div>
     );
 };

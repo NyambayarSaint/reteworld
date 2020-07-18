@@ -20,11 +20,13 @@ router.post('/company/register', async (req, res) => {
     }
 })
 
+// LOGOUT
 router.get('/company/logout', auth, async (req, res) => {
     await req.company.destroyTokens()
     res.status(200).send(true)
 })
 
+// LOGIN
 router.post('/company/login', async (req, res) => {
     try{
         const company = await Company.findByCredentials(req.body)

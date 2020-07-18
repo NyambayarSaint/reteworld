@@ -44,7 +44,6 @@ companySchema.pre("save", async function (next) {
 companySchema.methods.generateAuthToken = async function () {
   const company = this;
   const token = jwt.sign({ _id: company._id.toString() }, JWTSECRET);
-    console.log(token,'here')
   company.tokens = company.tokens.concat({ token });
   await company.save();
 

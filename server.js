@@ -23,6 +23,7 @@ require('./db');
 // LINKING THE PRE DEFINED ROUTES
 app.use(require('./routers/Authenticate'))
 app.use(require('./routers/Company'))
+app.use(require('./routers/Influencer'))
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)

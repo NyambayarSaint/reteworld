@@ -27,7 +27,7 @@ function App() {
       try {
         let res = await axios(localStorage.getItem('url')+"/authenticate");
         if(res.data === "Co") return setLoaded({status: true, result: res.data})
-        console.log(res, "success");
+        if(res.data === "In") return setLoaded({status: true, result: res.data})
         throw new Error ('Something wrong')
       } catch (e) {
         setredirectUnauthorized(true)
