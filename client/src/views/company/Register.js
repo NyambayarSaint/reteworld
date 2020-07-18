@@ -1,28 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import prettyError from '../../tools/prettyError'
 
 const CoRegister = () => {
 
-    useEffect(()=>{
-
-    },[])
-
-    const [error, setError] = useState({status: false, messages: []})
+    const [error, setError] = useState({status: false, message: <p>No Error</p>})
 
     const handle = async (e) => {
         e.preventDefault()
-        let res = await axios.post('/company/register', {
-            username: e.target.username.value,
-            email: e.target.email.value,
-            password: e.target.password.value
-        })
-        console.log(res,'res')
-        if(res.data.errors){
-            let msgs = []
-            for (var key in res.data.errors) if (res.data.errors.hasOwnProperty(key)) msgs.push({field: key, value: res.data.errors[key].properties.message})
-            return setError({status: true, messages: msgs})
-        }
-        
+        let res = await axios.post(localStorage.getItem('url')+'/company/register', {username: e.target.username.value,email: e.target.email.value,password: e.target.password.value})
+        if(!res.data.error) return document.location.href = "/company"
+        setError({status: true, message: prettyError(res.data.message)})
     }
     
     return (
@@ -35,11 +23,7 @@ const CoRegister = () => {
                 <input type="submit" value="Submit"/>
             </form>
             <div>
-                {error.status ? error.messages.map((err,i)=>{
-                    return(
-                    <p key={'err'+i} >{err.field} - {err.value}</p>
-                    )
-                }):null}
+                {error.status ? error.message :null}
             </div>
         </div>
     );

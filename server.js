@@ -21,6 +21,7 @@ require('dotenv').config()
 require('./db');
 
 // LINKING THE PRE DEFINED ROUTES
+app.use(require('./routers/Authenticate'))
 app.use(require('./routers/Company'))
 
 app.listen(port, () => {
